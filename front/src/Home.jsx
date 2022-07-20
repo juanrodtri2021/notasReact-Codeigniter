@@ -1,6 +1,7 @@
-import {useState,React} from 'react';
+import {useState,useEffect,React} from 'react';
 import Form from './components/Form';
 import Notes from './components/Notes';
+import axios from 'axios';
 //index.js*
 //|
 //|--Dashboard
@@ -11,13 +12,18 @@ import Notes from './components/Notes';
 //         |--Note
 export default function Dashboard() {
 
+    useEffect(() => {
+        axios.get('http://notes-api.test/api/notes')
+        .then((payload)=> {
+            setNotes(payload.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }, []);
+    
     const [notes, setNotes] = useState(
         [
-            {id:1,title:'note_1',description:'lorem ipsum'},
-            {id:2,title:'note_2',description:'lorem ipsum'},
-            {id:3,title:'note_3',description:'lorem ipsum'},
-            {id:4,title:'note_4',description:'lorem ipsum'},
-            {id:5,title:'note_5',description:'lorem ipsum'}
+            
         ]
     );
 
