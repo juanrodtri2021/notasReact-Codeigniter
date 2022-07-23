@@ -11,6 +11,7 @@ import axios from 'axios';
 //         |
 //         |--Note
 export default function Dashboard() {
+    const [notes, setNotes] = useState([]);
 
     useEffect(() => {
         axios.get('http://notes-api.test/api/notes')
@@ -21,11 +22,6 @@ export default function Dashboard() {
         })
     }, []);
     
-    const [notes, setNotes] = useState(
-        [
-            
-        ]
-    );
 
     // const changeState = () => {
     //     const registro = {id:6,title:'note_6',description:'lorem ipsum'};
